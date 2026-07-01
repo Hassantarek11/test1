@@ -15,10 +15,5 @@ service cloud.firestore {
     match /exams/{examId} {
       allow read, write: if true;
     }
-
-    // Rules for admins collection
-    match /admins/{configId} {
-      allow read, write: if true;
-    }
   }
 }
