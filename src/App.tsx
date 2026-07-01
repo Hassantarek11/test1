@@ -325,9 +325,9 @@ export default function App() {
             <div className="flex gap-4 text-[10px] text-slate-500 font-medium">
               <span className="flex items-center gap-1">
                 <Lock className="w-3 h-3 text-emerald-500" />
-                تأمين الاتصال SSL/HTTPS فعال
+            شركة الحسن للبرمجيات
               </span>
-              <span>بوابة إيزي باي مرخصة</span>
+              <span>للبرمجيات</span>
             </div>
           </div>
         </footer>
