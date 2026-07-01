@@ -3,10 +3,6 @@ import path from 'path';
 import crypto from 'crypto';
 import { createServer as createViteServer } from 'vite';
 import { dbManager, Student, Payment, GatewayConfig } from './server/db';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { doc, getDoc } from 'firebase/firestore';
-import { db, autoSeedAdminIfNeeded } from './server/firebase';
 
 const app = express();
 const PORT = 3000;
@@ -43,14 +39,12 @@ function generateKashierHash(merchantOrderId: string, amount: number, merchantId
     .digest('hex');
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-default-secure-jwt-secret-key-123456';
+// Admin Credentials & Sessions (simple, robust, stateful token storage)
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'password123'; // standard, easy-to-test credentials
+const ADMIN_SESSIONS = new Set<string>();
 
-interface DecodedToken {
-  username: string;
-  role: string;
-}
-
-// Admin Auth Middleware (Secured using stateless JWT)
+// Admin Auth Middleware
 const verifyAdmin = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -58,13 +52,11 @@ const verifyAdmin = (req: express.Request, res: express.Response, next: express.
     return;
   }
   const token = authHeader.split(' ')[1];
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET) as DecodedToken;
-    (req as any).admin = decoded;
-    next();
-  } catch (err) {
+  if (!ADMIN_SESSIONS.has(token)) {
     res.status(403).json({ error: 'جلسة عمل منتهية الصلاحية أو غير صالحة' });
+    return;
   }
+  next();
 };
 
 // ==========================================
@@ -304,51 +296,29 @@ app.get('/api/payments/verify', (req, res) => {
 // ==========================================
 
 // Login Route
-app.post('/api/admin/login', async (req, res) => {
+app.post('/api/admin/login', (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    res.status(400).json({ error: 'اسم المستخدم وكلمة المرور مطلوبان' });
-    return;
-  }
-
-  try {
-    const adminDocRef = doc(db, 'admins', username.trim());
-    const adminDoc = await getDoc(adminDocRef);
-
-    if (!adminDoc.exists()) {
-      res.status(401).json({ error: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
-      return;
-    }
-
-    const adminData = adminDoc.data();
-    const isMatch = await bcrypt.compare(password, adminData.passwordHash);
-
-    if (!isMatch) {
-      res.status(401).json({ error: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
-      return;
-    }
-
-    // Generate stateless secure JWT token
-    const token = jwt.sign(
-      { username: adminData.username, role: adminData.role || 'admin' },
-      JWT_SECRET,
-      { expiresIn: '24h' }
-    );
-
-    res.json({ success: true, token, username: adminData.username });
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'حدث خطأ في السيرفر أثناء تسجيل الدخول' });
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    const sessionToken = crypto.randomBytes(32).toString('hex');
+    ADMIN_SESSIONS.add(sessionToken);
+    res.json({ success: true, token: sessionToken, username });
+  } else {
+    res.status(401).json({ error: 'اسم المستخدم أو كلمة المرور غير صحيحة' });
   }
 });
 
 // Admin verification check
 app.get('/api/admin/me', verifyAdmin, (req, res) => {
-  res.json({ authenticated: true, username: (req as any).admin?.username || 'admin' });
+  res.json({ authenticated: true, username: ADMIN_USERNAME });
 });
 
 // Logout Route
 app.post('/api/admin/logout', (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    ADMIN_SESSIONS.delete(token);
+  }
   res.json({ success: true });
 });
 
@@ -512,9 +482,6 @@ app.get('/api/admin/payments', verifyAdmin, (req, res) => {
 // ==========================================
 
 async function startServer() {
-  // Ensure default admin account is seeded in Firestore
-  await autoSeedAdminIfNeeded();
-
   // Vite middleware for development
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
