@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Hash, IdCard, ShieldCheck, CreditCard, Lock, Sparkles } from 'lucide-react';
+import { Search, IdCard, ShieldCheck } from 'lucide-react';
 import { Student } from '../types';
 import { getApiUrl } from '../config';
 
@@ -42,16 +42,16 @@ export default function StudentSearch({ onSearchResult, onNavigateToVerify, onNa
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8" dir="rtl">
-      {/* Ministry Brand Header */}
+      {/* Institute Brand Header */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 mb-4 border border-emerald-100 shadow-xs">
           <ShieldCheck className="w-8 h-8" />
         </div>
         <h1 className="text-2xl font-bold text-gray-900 tracking-tight sm:text-3xl">
-          بوابة الاستعلام عن الشهادات الدراسية المعتمدة
+          معهد عبد الفتاح عزام بنين
         </h1>
         <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
-          المنصة الإلكترونية الرسمية الموحدة للاستعلام عن نتائج الامتحانات وتوثيق الشهادات الحكومية والدفع الإلكتروني الآمن.
+          المنصة الإلكترونية الرسمية المعتمدة للاستعلام عن نتائج الطلاب وتوثيق الشهادات الدراسية مع تفعيل الدفع الإلكتروني الآمن.
         </p>
       </div>
 
@@ -111,61 +111,6 @@ export default function StudentSearch({ onSearchResult, onNavigateToVerify, onNa
             )}
           </button>
         </form>
-
-        <div className="mt-6 pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4 items-center justify-between text-xs text-gray-500">
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-emerald-600" />
-            <span>نظام دفع إلكتروني مؤمن بالكامل (SSL/HTTPS)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-emerald-600" />
-            <span>متاح البحث السريع برقم الجلوس 1001، 1002، 1003</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Guide & Safety Information */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex flex-col justify-between">
-          <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-3">
-            1
-          </div>
-          <h3 className="font-semibold text-gray-900 text-sm mb-1">الاستعلام مجاناً</h3>
-          <p className="text-xs text-gray-500 leading-relaxed">
-            أدخل كود الاستعلام لترى البيانات الأساسية وحالة الشهادة فوراً دون أي تكاليف مسبقة.
-          </p>
-        </div>
-        <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex flex-col justify-between">
-          <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-3">
-            2
-          </div>
-          <h3 className="font-semibold text-gray-900 text-sm mb-1">دفع إلكتروني آمن</h3>
-          <p className="text-xs text-gray-500 leading-relaxed">
-            في حال كانت الشهادة مدفوعة، يتم تحويلك لبوابة كاشير المعتمدة لإتمام الدفع بجميع الوسائل.
-          </p>
-        </div>
-        <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex flex-col justify-between">
-          <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold mb-3">
-            3
-          </div>
-          <h3 className="font-semibold text-gray-900 text-sm mb-1">تحميل موثق بـ QR</h3>
-          <p className="text-xs text-gray-500 leading-relaxed">
-            احصل على شهادة رسمية تحتوي على رمز استجابة سريع (QR) للتحقق من صحتها من أي هاتف.
-          </p>
-        </div>
-      </div>
-
-      {/* Manual Verification */}
-      <div className="flex justify-center items-center bg-slate-100 border border-slate-200 rounded-xl px-4 py-3">
-        <button
-          onClick={() => {
-            const h = prompt('أدخل كود التحقق السريع (Certificate Hash):');
-            if (h) onNavigateToVerify(h);
-          }}
-          className="text-emerald-700 hover:text-emerald-800 text-xs font-bold cursor-pointer"
-        >
-          التحقق اليدوي من صحة شهادة
-        </button>
       </div>
     </div>
   );

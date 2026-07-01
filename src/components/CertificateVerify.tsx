@@ -75,7 +75,7 @@ export default function CertificateVerify({ hash, onBackToHome }: CertificateVer
             <div className="space-y-1.5">
               <h2 className="text-2xl font-black text-emerald-800">شهادة معتمدة وموثقة رقمياً</h2>
               <p className="text-xs text-emerald-600 max-w-md mx-auto font-medium">
-                تم التحقق من صحة هذه الوثيقة وتوقيعها الإلكتروني. هذا التقرير يطابق السجلات الرسمية لإدارة الامتحانات بوزارة التربية والتعليم بنسبة 100%.
+                تم التحقق من صحة هذه الوثيقة وتوقيعها الإلكتروني. هذا التقرير يطابق السجلات الرسمية لإدارة الامتحانات وشؤون الطلاب بمعهد عبد الفتاح عزام بنين بنسبة 100%.
               </p>
             </div>
 
@@ -108,8 +108,8 @@ export default function CertificateVerify({ hash, onBackToHome }: CertificateVer
                 <div className="flex items-start gap-2.5">
                   <Building className="w-4 h-4 text-emerald-600 mt-0.5" />
                   <div>
-                    <span className="block text-xs text-gray-400">المدرسة والوزارة</span>
-                    <span className="font-medium">{result.student.school_name}</span>
+                    <span className="block text-xs text-gray-400">المؤسسة التعليمية</span>
+                    <span className="font-medium">الأزهر الشريف - معهد عبد الفتاح عزام بنين</span>
                   </div>
                 </div>
 
@@ -152,7 +152,7 @@ export default function CertificateVerify({ hash, onBackToHome }: CertificateVer
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-red-800">تحذير: شهادة غير صالحة أو ملغاة</h2>
             <p className="text-sm text-red-600 max-w-md mx-auto leading-relaxed font-medium">
-              عذراً، لم نتمكن من مطابقة الرمز <code className="font-mono bg-red-100 px-1.5 py-0.5 rounded text-xs font-bold text-red-900">{hash}</code> مع أي سجل نشط ومصدق عليه في سيرفرات الوزارة. قد تكون الوثيقة منسوخة أو معدلة أو تم إلغاؤها لدواعي التوثيق الأمني.
+              عذراً، لم نتمكن من مطابقة الرمز <code className="font-mono bg-red-100 px-1.5 py-0.5 rounded text-xs font-bold text-red-900">{hash}</code> مع أي سجل نشط ومصدق عليه في سيرفرات المعهد. قد تكون الوثيقة منسوخة أو معدلة أو تم إلغاؤها لدواعي التوثيق الأمني.
             </p>
           </div>
 
@@ -160,7 +160,7 @@ export default function CertificateVerify({ hash, onBackToHome }: CertificateVer
             <span className="font-bold text-gray-900 block">الإجراءات المقترحة:</span>
             <ul className="list-disc list-inside space-y-1 pr-2">
               <li>يرجى التأكد من كتابة الكود بشكل صحيح بدون فراغات أو رموز خاطئة.</li>
-              <li>يرجى التواصل مع إدارة الامتحانات بالوزارة في حال تم سداد الرسوم بالفعل ولم تفعل بعد.</li>
+              <li>يرجى التواصل مع إدارة معهد عبد الفتاح عزام بنين في حال تم سداد الرسوم بالفعل ولم تفعل بعد.</li>
               <li>طلب إعادة إصدار الشهادة من لوحة الأدمن لتحديث رموز التوثيق.</li>
             </ul>
           </div>

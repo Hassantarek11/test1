@@ -77,7 +77,7 @@ export default function PaymentGateway({ transactionId, amount, signature, mode 
         <div className="flex items-center gap-2">
           <Building2 className={`w-5 h-5 ${mode === 'production' ? 'text-red-500' : mode === 'sandbox' ? 'text-amber-500' : 'text-emerald-500'}`} />
           <span className="font-black text-sm tracking-widest text-slate-200">
-            {mode === 'production' ? 'بوابة كاشير الحية | KASHIER PRODUCTION' : mode === 'sandbox' ? 'بوابة كاشير التجريبية | KASHIER SANDBOX' : 'محاكي كاشير الآمن | KASHIER SIMULATOR'}
+            {mode === 'production' ? 'بوابة إيزي باي الحية | EASYPAY PRODUCTION' : mode === 'sandbox' ? 'بوابة إيزي باي التجريبية | EASYPAY SANDBOX' : 'محاكي إيزي باي الآمن | EASYPAY SIMULATOR'}
           </span>
         </div>
         <button
@@ -100,7 +100,7 @@ export default function PaymentGateway({ transactionId, amount, signature, mode 
             <div className="space-y-2">
               <h3 className="text-xl font-extrabold text-white">تم الدفع بنجاح!</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                تم استلام رسوم توثيق الشهادة وقدرها {amount} ج.م بنجاح عبر محفظتك الإلكترونية، وتم تفعيل الشهادة فوراً في قاعدة بيانات الوزارة.
+                تم استلام رسوم توثيق الشهادة وقدرها {amount} ج.م بنجاح عبر محفظتك الإلكترونية، وتم تفعيل الشهادة فوراً في قاعدة بيانات المعهد.
               </p>
             </div>
 
@@ -161,10 +161,10 @@ export default function PaymentGateway({ transactionId, amount, signature, mode 
               <Lock className="w-5 h-5 flex-shrink-0" />
               <span>
                 {mode === 'production' 
-                  ? 'إنك في وضع التحصيل الحي الحقيقي للشهادات المعتمدة. سيتم توثيق وتوقيع المعاملة رقمياً باستخدام HMAC-SHA256.' 
+                  ? 'إنك في وضع التحصيل الحي الحقيقي للشهادات المعتمدة عبر إيزي باي. سيتم توثيق وتوقيع المعاملة رقمياً باستخدام HMAC-SHA256.' 
                   : mode === 'sandbox' 
-                  ? 'إنك تتصل الآن ببيئة كاشير الاختبارية الحقيقية (Sandbox). جميع معاملاتك موثقة وموقعة بشفرات التاجر المدخلة.'
-                  : 'هذه محاكاة تجريبية آمنة تحاكي بوابة دفع كاشير الفعلية. يتم توقيع المعاملة والتحقق منها عبر بروتوكول HMAC-SHA256 من السيرفر فقط.'}
+                  ? 'إنك تتصل الآن ببيئة إيزي باي الاختبارية الحقيقية (Sandbox). جميع معاملاتك موثقة وموقعة بشفرات التاجر المدخلة.'
+                  : 'هذه محاكاة تجريبية آمنة تحاكي بوابة دفع إيزي باي الفعلية. يتم توقيع المعاملة والتحقق منها عبر بروتوكول HMAC-SHA256 من السيرفر فقط.'}
               </span>
             </div>
 

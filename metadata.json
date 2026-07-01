@@ -1,6 +1,6 @@
 {
-  "name": "High School Student Management",
-  "description": "نظام لإدارة طلاب المرحلة الثانوية ومتابعة السنوات الدراسية وحالة دفع المصاريف.",
+  "name": "معهد عبد الفتاح عزام بنين",
+  "description": "نظام إلكتروني آمن للاستعلام عن الشهادات والنتائج الدراسية لمعهد عبد الفتاح عزام بنين والدفع الإلكتروني وتحميل الشهادات مع التحقق عبر الـ QR Code.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

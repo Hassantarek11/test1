@@ -128,8 +128,8 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
                     className="w-4 h-4 text-emerald-600 focus:ring-emerald-500"
                   />
                   <div className="flex-1">
-                    <span className="block font-bold text-gray-900 text-sm">محافظ الهاتف المحمول عبر بوابة كاشير (فودافون كاش / اتصالات / أورانج / Instapay)</span>
-                    <span className="block text-xs text-emerald-700 mt-1">سدد فوراً وبسهولة عبر محفظتك الإلكترونية المفضلة</span>
+                    <span className="block font-bold text-gray-900 text-sm">المحافظ الإلكترونية والبطاقات عبر بوابة إيزي باي (EasyPay)</span>
+                    <span className="block text-xs text-emerald-700 mt-1">سدد فوراً وبسهولة عبر محفظتك الإلكترونية أو بطاقتك المفضلة</span>
                   </div>
                   <Smartphone className="w-5 h-5 text-emerald-600" />
                 </label>
@@ -149,12 +149,12 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
                 {paying ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>تحويلك إلى بوابة كاشير المؤمّنة...</span>
+                    <span>تحويلك إلى بوابة إيزي باي المؤمّنة...</span>
                   </>
                 ) : (
                   <>
                     <CreditCard className="w-5 h-5" />
-                    <span>دفع الرسوم عبر كاشير وتفعيل الشهادة</span>
+                    <span>دفع الرسوم عبر إيزي باي وتفعيل الشهادة</span>
                   </>
                 )}
               </button>
@@ -197,9 +197,8 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
             <div className="flex justify-between items-start border-b-2 border-emerald-800 pb-6 mb-8 text-sm text-gray-800">
               <div className="text-right space-y-1">
                 <span className="block font-bold text-base text-gray-900">جمهورية مصر العربية</span>
-                <span className="block">وزارة التربية والتعليم والتعليم الفني</span>
-                <span className="block">الإدارة العامة للامتحانات</span>
-                <span className="block font-medium">{student.school_name}</span>
+                <span className="block">الأزهر الشريف - قطاع المعاهد الأزهرية</span>
+                <span className="block font-medium">معهد عبد الفتاح عزام بنين</span>
               </div>
               <div className="text-left space-y-1">
                 <span className="block">العام الدراسي: <strong className="font-medium">{student.school_year}</strong></span>
@@ -214,7 +213,7 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
                 شهادة نجاح وتوثيق دائم
               </span>
               <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto text-base">
-                تشهد وزارة التربية والتعليم بأن الطالب / <strong className="text-lg font-bold text-gray-950 underline decoration-emerald-600 underline-offset-4">{student.full_name}</strong>
+                يشهد معهد عبد الفتاح عزام بنين بأن الطالب / <strong className="text-lg font-bold text-gray-950 underline decoration-emerald-600 underline-offset-4">{student.full_name}</strong>
               </p>
               <p className="text-gray-700 leading-relaxed text-sm">
                 صاحب الرقم القومي <strong className="font-mono text-gray-900 font-bold bg-slate-100 px-2 py-0.5 rounded">{student.national_id}</strong> ورقم الجلوس <strong className="font-mono text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded">{student.seat_number}</strong>
@@ -282,7 +281,7 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
                   )}
                 </div>
                 <div className="text-xs text-gray-500 max-w-[180px]">
-                  امسح الـ QR للتحقق الفوري من صحة هذه الشهادة مباشرة من سيرفرات الوزارة.
+                  امسح الـ QR للتحقق الفوري من صحة هذه الشهادة مباشرة من سيرفرات معهد عبد الفتاح عزام بنين.
                 </div>
               </div>
 
@@ -293,22 +292,22 @@ export default function StudentCertificate({ student, onBack, onPayRedirect }: S
                   <span>مُوقّع رقمياً ومعتمد</span>
                 </div>
                 <p className="text-xs text-gray-400 max-w-[200px]">
-                  تحتوي هذه الوثيقة على شهادة توقيع إلكتروني مدمجة وصالحة للتقديم للجهات الحكومية والخاصة.
+                  تحتوي هذه الوثيقة على شهادة توقيع إلكتروني مدمجة وصالحة للتقديم للجهات الحكومية والأزهرية والخاصة.
                 </p>
               </div>
 
-              {/* Ministry Seal Mockup */}
+              {/* Institute Seal Mockup */}
               <div className="text-center space-y-4">
                 <span className="block text-gray-500 font-bold text-xs uppercase tracking-wide">
-                  خاتم شعار الجمهورية الإلكتروني
+                  خاتم شعار المعهد الإلكتروني
                 </span>
                 <div className="w-20 h-20 rounded-full border-4 border-emerald-800/20 bg-emerald-50 flex items-center justify-center mx-auto relative rotate-12">
                   <div className="absolute inset-2 rounded-full border border-dashed border-emerald-800 flex items-center justify-center text-[10px] text-emerald-800 font-black tracking-tighter text-center">
-                    وزارة التربية<br />والتعليم
+                    معهد عبد الفتاح<br />عزام بنين
                   </div>
                 </div>
                 <span className="block text-xs font-bold text-gray-900 underline decoration-emerald-800 decoration-wavy">
-                  أمين عام قطاع الامتحانات
+                  شيخ المعهد
                 </span>
               </div>
             </div>

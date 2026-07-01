@@ -41,7 +41,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
   const [fullName, setFullName] = useState('');
   const [grade, setGrade] = useState('ممتاز');
   const [percentage, setPercentage] = useState<number>(90);
-  const [schoolName, setSchoolName] = useState('مدرسة المتفوقين الثانوية للبنين');
+  const [schoolName, setSchoolName] = useState('معهد عبد الفتاح عزام بنين');
   const [schoolYear, setSchoolYear] = useState('2025 - 2026');
   const [price, setPrice] = useState<number>(150);
 
@@ -228,7 +228,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
   const handleSaveGatewayConfig = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!gatewayMerchantId || !gatewayApiKey || !gatewayApiSecret) {
-      showToast('جميع الحقول مطلوبة لتكوين كاشير', 'error');
+      showToast('جميع الحقول مطلوبة لتكوين إيزي باي', 'error');
       return;
     }
     setGatewaySaving(true);
@@ -250,7 +250,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
       if (!response.ok) {
         throw new Error(data.error || 'فشل حفظ الإعدادات');
       }
-      showToast('تم حفظ إعدادات بوابة كاشير بنجاح وقفل التشفير الرقمي', 'success');
+      showToast('تم حفظ إعدادات بوابة إيزي باي بنجاح وقفل التشفير الرقمي', 'success');
       fetchAdminData();
     } catch (err: any) {
       showToast(err.message || 'فشل حفظ التكوين المالي', 'error');
@@ -267,10 +267,10 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
     setFullName('');
     setGrade('ممتاز');
     setPercentage(90);
-    setSchoolName('مدرسة المتفوقين الثانوية للبنين');
+    setSchoolName('معهد عبد الفتاح عزام بنين');
     setSchoolYear('2025 - 2026');
     setPrice(150);
-    loadGeneralEducationPresets();
+    loadAzharPresets();
     setShowModal(true);
   };
 
@@ -374,7 +374,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
   };
 
   const handleDeleteStudent = async (id: string) => {
-    if (!window.confirm('هل أنت متأكد من رغبتك في حذف هذا الطالب نهائياً من سجلات الوزارة؟ لا يمكن التراجع عن هذا الإجراء.')) {
+    if (!window.confirm('هل أنت متأكد من رغبتك في حذف هذا الطالب نهائياً من سجلات المعهد؟ لا يمكن التراجع عن هذا الإجراء.')) {
       return;
     }
 
@@ -508,7 +508,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-200 pb-4">
             <div>
               <h2 className="text-xl font-extrabold text-gray-900">لوحة الإشراف العام والاعتماد والتوثيق</h2>
-              <p className="text-xs text-gray-400 mt-1">مسجل دخول بصفة مسؤول النظام. إمكانية إدارة النتائج والتحقق من Webhooks بوابة كاشير.</p>
+              <p className="text-xs text-gray-400 mt-1">مسجل دخول بصفة مسؤول النظام. إمكانية إدارة النتائج والتحقق من Webhooks بوابة إيزي باي.</p>
             </div>
             <div className="flex gap-2">
               <button
@@ -553,13 +553,13 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
               onClick={() => setActiveTab('payments')}
               className={`pb-3 transition-colors cursor-pointer ${activeTab === 'payments' ? 'border-b-2 border-emerald-600 text-emerald-700 font-extrabold' : 'text-gray-400 hover:text-gray-600'}`}
             >
-              سجل مدفوعات كاشير ({payments.length})
+              سجل مدفوعات إيزي باي ({payments.length})
             </button>
             <button
               onClick={() => setActiveTab('gateway')}
               className={`pb-3 transition-colors cursor-pointer ${activeTab === 'gateway' ? 'border-b-2 border-emerald-600 text-emerald-700 font-extrabold' : 'text-gray-400 hover:text-gray-600'}`}
             >
-              إعدادات بوابة كاشير
+              إعدادات بوابة إيزي باي
             </button>
           </div>
 
@@ -614,7 +614,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
 
                 <div className="bg-white border border-gray-150 rounded-xl p-5 flex items-center justify-between shadow-3xs">
                   <div>
-                    <span className="text-xs text-gray-400 block font-bold">إجمالي الإيرادات (كاشير)</span>
+                    <span className="text-xs text-gray-400 block font-bold">إجمالي الإيرادات (إيزي باي)</span>
                     <strong className="text-2xl font-black text-slate-900 mt-1 block">{stats.totalRevenue} ج.م</strong>
                   </div>
                   <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center">
@@ -626,7 +626,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
               {/* Quick Info Box */}
               <div className="bg-slate-50 border border-slate-100 rounded-xl p-5 flex flex-col md:flex-row justify-between gap-4 items-center">
                 <div className="space-y-1 text-center md:text-right">
-                  <h3 className="font-bold text-gray-900">سيرفر معالجة الويب هوك الخاص بكاشير (Webhook Endpoint)</h3>
+                  <h3 className="font-bold text-gray-900">سيرفر معالجة الويب هوك الخاص بإيزي باي (Webhook Endpoint)</h3>
                   <p className="text-xs text-gray-500">يتلقى السيرفر التحديثات الفورية للمعاملات مباشرة وبشكل آمن ويوقع الـ Callback لمنع أي اختراق أو تحايل من العميل.</p>
                 </div>
                 <div className="bg-slate-900 text-white font-mono text-xs px-3.5 py-2 rounded-lg border border-slate-750 select-all">
@@ -807,7 +807,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
             </div>
           )}
 
-          {/* KASHIER GATEWAY SETTINGS TAB */}
+          {/* EASYPAY GATEWAY SETTINGS TAB */}
           {activeTab === 'gateway' && (
             <div className="space-y-6">
               <div className="bg-white border border-gray-150 rounded-xl p-6 shadow-3xs">
@@ -816,7 +816,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                     <Settings className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-gray-900 text-base">إعدادات بوابة الدفع الإلكتروني كاشير (Kashier)</h3>
+                    <h3 className="font-extrabold text-gray-900 text-base">إعدادات بوابة الدفع الإلكتروني إيزي باي (EasyPay)</h3>
                     <p className="text-xs text-gray-400 mt-0.5">قم بتهيئة مفاتيح الاتصال والتشفير لتفعيل التحصيل الإلكتروني الحقيقي لقيم الشهادات.</p>
                   </div>
                 </div>
@@ -835,7 +835,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                           <span className="font-extrabold text-xs">1. محاكاة تجريبية آمنة (Simulator)</span>
                           <span className={`w-2.5 h-2.5 rounded-full ${gatewayMode === 'simulator' ? 'bg-emerald-500 animate-pulse' : 'bg-gray-300'}`}></span>
                         </div>
-                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">تسمح لك باختبار دورة الدفع الكاملة والويب هوك بدون الحاجة لحساب كاشير حقيقي. رائعة للعرض الفوري والتطوير.</p>
+                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">تسمح لك باختبار دورة الدفع الكاملة والويب هوك بدون الحاجة لحساب إيزي باي حقيقي. رائعة للعرض الفوري والتطوير.</p>
                       </button>
 
                       <button
@@ -844,10 +844,10 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                         className={`flex flex-col p-4 rounded-xl border text-right transition-all cursor-pointer ${gatewayMode === 'sandbox' ? 'border-amber-500 bg-amber-50/40 text-amber-950 shadow-3xs' : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-600'}`}
                       >
                         <div className="flex items-center justify-between w-full">
-                          <span className="font-extrabold text-xs">2. بيئة كاشير التجريبية (Sandbox)</span>
+                          <span className="font-extrabold text-xs">2. بيئة إيزي باي التجريبية (Sandbox)</span>
                           <span className={`w-2.5 h-2.5 rounded-full ${gatewayMode === 'sandbox' ? 'bg-amber-500 animate-pulse' : 'bg-gray-300'}`}></span>
                         </div>
-                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">تتصل مباشرة بخوادم كاشير التجريبية الحقيقية (test-checkout.kashier.co). يمكنك استخدام بطاقات كاشير الاختبارية لتأكيد نجاح السيرفر.</p>
+                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">تتصل مباشرة بخوادم إيزي باي التجريبية الحقيقية (test-checkout.easypay.eg). يمكنك استخدام بطاقات إيزي باي الاختبارية لتأكيد نجاح السيرفر.</p>
                       </button>
 
                       <button
@@ -859,7 +859,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                           <span className="font-extrabold text-xs">3. البيئة الحية الحقيقية (Production)</span>
                           <span className={`w-2.5 h-2.5 rounded-full ${gatewayMode === 'production' ? 'bg-red-500 animate-pulse' : 'bg-gray-300'}`}></span>
                         </div>
-                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">التحصيل المالي الحقيقي من العملاء. سيتم توجيه الطلاب مباشرة إلى بوابة الدفع الحية لكاشير وإيداع الأموال بحسابك البنكي.</p>
+                        <p className="text-[10px] text-gray-400 mt-2 leading-relaxed">التحصيل المالي الحقيقي من العملاء. سيتم توجيه الطلاب مباشرة إلى بوابة الدفع الحية لإيزي باي وإيداع الأموال بحسابك البنكي.</p>
                       </button>
                     </div>
                   </div>
@@ -869,14 +869,14 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                     <div className="space-y-1">
                       <label className="block text-xs font-bold text-gray-700 flex items-center gap-1.5">
                         <Users className="w-3.5 h-3.5 text-gray-400" />
-                        <span>معرّف التاجر الخاص بكاشير (Merchant ID)</span>
+                        <span>معرّف التاجر الخاص بإيزي باي (Merchant ID)</span>
                       </label>
                       <input
                         type="text"
                         required
                         value={gatewayMerchantId}
                         onChange={(e) => setGatewayMerchantId(e.target.value)}
-                        placeholder="أدخل معرّف التاجر الخاص بكاشير"
+                        placeholder="أدخل معرّف التاجر الخاص بإيزي باي"
                         className="block w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-mono text-gray-900 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 bg-slate-50 focus:bg-white transition-all"
                       />
                     </div>
@@ -906,7 +906,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                         required
                         value={gatewayApiSecret}
                         onChange={(e) => setGatewayApiSecret(e.target.value)}
-                        placeholder="أدخل المفتاح السري لتوقيع معاملات كاشير (HMAC-SHA256)"
+                        placeholder="أدخل المفتاح السري لتوقيع معاملات إيزي باي (HMAC-SHA256)"
                         className="block w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-mono text-gray-900 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 bg-slate-50 focus:bg-white transition-all"
                       />
                       <span className="text-[10px] text-gray-400 block pt-0.5 leading-relaxed">
@@ -919,10 +919,10 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                   <div className="bg-slate-50 border border-slate-150 rounded-xl p-4 space-y-3">
                     <h4 className="text-xs font-extrabold text-gray-900 flex items-center gap-1.5">
                       <Globe className="w-4 h-4 text-emerald-600 animate-spin" />
-                      <span>ربط الـ Webhook التلقائي بكاشير لمزامنة الدفع الفوري للطلاب:</span>
+                      <span>ربط الـ Webhook التلقائي بإيزي باي لمزامنة الدفع الفوري للطلاب:</span>
                     </h4>
                     <p className="text-[10px] text-gray-500 leading-relaxed">
-                      لكي يتم تفعيل الشهادة للطالب تلقائياً وبشكل آمن وفوري بمجرد إتمام السداد بنجاح، قم بنسخ الرابط التالي ولصقه في حقل <strong>"Webhook / Callback URL"</strong> داخل لوحة تحكم التاجر الخاصة بك في كاشير (Kashier Dashboard):
+                      لكي يتم تفعيل الشهادة للطالب تلقائياً وبشكل آمن وفوري بمجرد إتمام السداد بنجاح، قم بنسخ الرابط التالي ولصقه في حقل <strong>"Webhook / Callback URL"</strong> داخل لوحة تحكم التاجر الخاصة بك في إيزي باي (EasyPay Dashboard):
                     </p>
                     <div className="flex items-center justify-between gap-4 bg-slate-900 text-white p-3 rounded-lg border border-slate-750">
                       <div className="font-mono text-[10px] select-all overflow-x-auto whitespace-nowrap scrollbar-none flex-1 pl-2">
@@ -947,7 +947,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                       ) : (
                         <>
                           <Save className="w-4 h-4" />
-                          <span>حفظ وتفعيل إعدادات كاشير</span>
+                          <span>حفظ وتفعيل إعدادات إيزي باي</span>
                         </>
                       )}
                     </button>
@@ -1080,7 +1080,7 @@ export default function AdminPanel({ onBackToSearch }: AdminPanelProps) {
                           onChange={(e) => setPrice(Number(e.target.value))}
                           className="block w-full px-3 py-2 text-gray-900 border border-gray-300 rounded-lg text-xs font-mono"
                         />
-                        <span className="text-[10px] text-gray-400">تنبيه: تحديد السعر 0 سيجعل تحميل الشهادة مجاناً فوراً دون بوابة كاشير.</span>
+                        <span className="text-[10px] text-gray-400">تنبيه: تحديد السعر 0 سيجعل تحميل الشهادة مجاناً فوراً دون بوابة إيزي باي.</span>
                       </div>
                     </div>
                   </div>
